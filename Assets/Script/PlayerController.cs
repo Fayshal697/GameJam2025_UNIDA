@@ -15,8 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = false;
     private float defaultGravityScale;
-
-
+    
     public bool shieldActive = false;
 
     void Start()
@@ -28,14 +27,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        RunForward();
         HandleJump();
         HandleGravityFlip();
-    }
-
-    void RunForward()
-    {
-        rb.linearVelocity = new Vector2(normalSpeed, rb.linearVelocity.y);
     }
 
     void HandleJump()

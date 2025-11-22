@@ -1,19 +1,28 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("HUD Elements")]
     public TMP_Text scoreText;
     public TMP_Text powerUpText;
 
+    private void Awake()
+    {
+        if (powerUpText != null)
+            powerUpText.gameObject.SetActive(false);
+    }
+
     public void UpdateScore(float score)
     {
-        scoreText.text = Mathf.FloorToInt(score).ToString();
+        if (scoreText != null)
+            scoreText.text = Mathf.FloorToInt(score).ToString();
     }
 
     public void ShowPowerUp(string text)
     {
+        if (powerUpText == null) return;
+
         powerUpText.text = text;
         powerUpText.gameObject.SetActive(true);
 
@@ -21,8 +30,9 @@ public class UIManager : MonoBehaviour
         Invoke(nameof(HidePowerUp), 1.5f);
     }
 
-    void HidePowerUp()
+    private void HidePowerUp()
     {
-        powerUpText.gameObject.SetActive(false);
+        if (powerUpText != null)
+            powerUpText.gameObject.SetActive(false);
     }
 }

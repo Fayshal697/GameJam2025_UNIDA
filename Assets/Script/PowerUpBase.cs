@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class PowerUpBase : MonoBehaviour
 {
+
+    public string displayName = "Power Up";
     public float duration = 3f;   // untuk powerup yang punya waktu
     public bool hasDuration = true;
 

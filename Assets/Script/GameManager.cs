@@ -63,4 +63,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ShowPowerUpText(string name)
+    {
+        uiManager?.ShowPowerUp(name);
+    }
+
 }
