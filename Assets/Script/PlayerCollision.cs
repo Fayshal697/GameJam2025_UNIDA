@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour
 {
     private GameManager gm;
+    public PlayerController playerController;
 
     void Start()
     {
@@ -23,4 +24,21 @@ public class PlayerCollision : MonoBehaviour
             gm.CollectPowerUp(collision.gameObject);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Obstacle"))
+        {
+            if (playerController.shieldActive)
+            {
+                playerController.shieldActive = false;
+                // TODO: Hilangkan efek shield
+            }
+            else
+            {
+                gm.GameOver();
+            }
+        }
+    }
+
 }
