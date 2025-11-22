@@ -27,14 +27,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        RunForward();
         HandleJump();
         HandleGravityFlip();
-    }
-
-    void RunForward()
-    {
-        rb.linearVelocity = new Vector2(normalSpeed, rb.linearVelocity.y);
     }
 
     void HandleJump()
