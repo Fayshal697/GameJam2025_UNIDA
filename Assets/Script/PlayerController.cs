@@ -4,7 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    public float normalSpeed = 5f;
+    public float currentSpeed;
     public float jumpForce = 7f;
 
     [Header("Gravity Flip")]
@@ -15,10 +16,14 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private float defaultGravityScale;
 
+
+    public bool shieldActive = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         defaultGravityScale = rb.gravityScale;
+        currentSpeed = normalSpeed;
     }
 
     void Update()
@@ -30,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void RunForward()
     {
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(normalSpeed, rb.linearVelocity.y);
     }
 
     void HandleJump()
@@ -94,5 +99,21 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Player menggunakan obstacle breaker!");
         // Kamu bisa menambahkan efek visual atau durasi power-up di sini
+    }
+
+    public void ActivateShield()
+    {
+        shieldActive = true;
+        // Tambahkan efek visual shield di sini
+    }
+
+    public IEnumerator ActivateSpeedBoost(float duration, float speedMultiplier)
+    {
+        currentSpeed = normalSpeed * speedMultiplier;
+
+        // TODO: Tambahkan efek visual speed
+        yield return new WaitForSeconds(duration);
+
+        currentSpeed = normalSpeed;
     }
 }
