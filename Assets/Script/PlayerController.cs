@@ -77,4 +77,22 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
             isGrounded = false;
     }
+    
+    public bool CanBreakObstacle = false;
+
+    // Dipanggil ketika obstacle mencoba menghancurkan player,
+    // tetapi player TIDAK punya power-up breaker.
+    public void OnHitObstacle()
+    {
+        Debug.Log("Player terkena obstacle!");
+        // Tambahkan efek: mati, animasi, knockback, dll. di sini
+    }
+
+    // Dipanggil ketika player punya power-up pemecah obstacle.
+    // Untuk sekarang cukup log saja agar tidak error.
+    public void UseObstacleBreaker()
+    {
+        Debug.Log("Player menggunakan obstacle breaker!");
+        // Kamu bisa menambahkan efek visual atau durasi power-up di sini
+    }
 }
