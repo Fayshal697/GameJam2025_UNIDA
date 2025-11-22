@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public float score;
+    public float scoreRate = 5f; // score per second
+    public bool isPlaying = false;
+    private UIManager uiManager; 
+
 
     private void Awake()
     {
@@ -16,6 +21,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 
     public void GameOver()
@@ -46,4 +53,14 @@ public class GameManager : MonoBehaviour
 
         Destroy(powerup);
     }
+
+    void Update()
+    {
+        if (isPlaying)
+        {
+            score += scoreRate * Time.deltaTime;
+            uiManager.UpdateScore(score);
+        }
+    }
+
 }
