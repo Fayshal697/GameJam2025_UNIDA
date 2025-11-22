@@ -15,8 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = false;
     private float defaultGravityScale;
-
-
+    
     public bool shieldActive = false;
 
     void Start()
